@@ -1,7 +1,7 @@
 # Cron docker image with :
 # - Supersonic to run crontab file (https://github.com/aptible/supercronic)
 # - AWS cli to send content to s3
-# - Timezone setup
+# - Timezone setup (UTC)
 # - Service user uid 1001
 
 FROM python:3.8-alpine
@@ -26,8 +26,8 @@ RUN \
     adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1001 -D ${SERVICE_USER} \
     && apk add --no-cache dumb-init curl tzdata \
     && pip3 --no-cache install awscli \
-    && cp /usr/share/zoneinfo/Europe/Brussels /etc/localtime \
-    && echo "Europe/Brussels" >  /etc/timezone \
+    && cp /usr/share/zoneinfo/UTC /etc/localtime \
+    && echo "UTC" >  /etc/timezone \
     && apk del tzdata 
 
 RUN \
