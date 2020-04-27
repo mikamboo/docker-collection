@@ -39,6 +39,7 @@ RUN \
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
+VOLUME  ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init" ]
 CMD [ "supercronic" ]
